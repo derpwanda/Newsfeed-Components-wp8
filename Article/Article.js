@@ -113,100 +113,42 @@ const data = [
 
 */
 
-function articles(title, date, first, second, third) {
-    const articleDiv = document.createElement("div");
-    const header = document.createElement("h2");
-    const artdate = document.createElement("p");
-    const artfirst = document.createElement("p");
-    const artsecond = document.createElement("p");
-    const artthird = document.createElement("p");
-    const expandbtn = document.createElement("span");
+const articleCreator = article => {
+    const div = document.createElement("div");
+    div.classList.add("article");
 
-    //classes
-    articleDiv.classList.add("article");
-    artdate.classList.add("date");
-    expandbtn.classList.add("expandButton");
+    const h2 = document.createElement("h2");
+    h2.textContent = article.title;
 
-    //structure of elements
-    header.textContent = title;
-    artdate.textContent = date;
-    artfirst.textContent = first;
-    artsecond.textContent = second;
-    artthird.textContent = third;
-    expandbtn.textContent = "Expand";
+    const articleDate = document.createElement("p");
+    articleDate.textContent = article.date;
+    articleDate.classList.add("date");
 
-    expandbtn.addEventListener("click", () => {
-        articleDiv.classList.toggle("article-open");
+    const p1 = document.createElement("p");
+    p1.textContent = article.firstParagraph;
+
+    const p2 = document.createElement("p");
+    p2.textContent = article.secondParagraph;
+
+    const p3 = document.createElement("p");
+    p3.textContent = article.thirdParagraph;
+
+    const expand = document.createElement("span");
+    expand.classList.add("expandButton");
+    expand.textContent = "Expand";
+    expand.addEventListener("click", () => {
+        div.classList.toggle("article-open");
     });
 
-    articleDiv.appendChild(header);
-    articleDiv.appendChild(artdate);
-    articleDiv.appendChild(artfirst);
-    articleDiv.appendChild(artsecond);
-    articleDiv.appendChild(artthird);
-    articleDiv.appendChild(expandbtn);
+    const elements = [h2, articleDate, p1, p2, p3, expand];
 
-    return articleDiv;
+    for (const element of elements) {
+        div.appendChild(element);
+    }
+
+    return div;
+};
+
+for (const article of data) {
+    document.querySelector(".articles").appendChild(articleCreator(article));
 }
-
-const articlesContainer = document.querySelector(".articles");
-
-const articleData = data.map(e => {
-    return articles(
-        e.title,
-        e.date,
-        e.firstParagraph,
-        e.secondParagraph,
-        e.thirdParagraph
-    );
-});
-
-articleData.forEach(e => {
-    articlesContainer.appendChild(e);
-});
-
-// function articles(title, date, first, second, third) {
-//     const artDiv = document.createElement("div");
-//     const heading = document.createElement("h2");
-//     const dateP = document.createElement("p");
-//     const firstP = document.createElement("p");
-//     const secondP = document.createElement("p");
-//     const thirdP = document.createElement("p");
-//     const expandbtn = document.createElement("span");
-//     artDiv.classList.add("article");
-//     firstP.classList.add("date");
-//     expandbtn.classList.add("expandButton");
-//     heading.textContent = title;
-//     dateP.textContent = date;
-//     firstP.textContent = first;
-//     secondP.textContent = second;
-//     thirdP.textContent = third;
-//     expandbtn.textContent = "Expand";
-
-//     expandbtn.addEventListener("click", () => {
-//         artDiv.classList.toggle("article-open");
-//     });
-
-//     artDiv.appendChild(heading);
-//     artDiv.appendChild(dateP);
-//     artDiv.appendChild(firstP);
-//     artDiv.appendChild(secondP);
-//     artDiv.appendChild(thirdP);
-//     artDiv.appendChild(expandbtn);
-
-//     return artDiv;
-// }
-// const articleContainer = document.querySelector(".articles");
-
-// const artdata = data.map(e => {
-//     return articles(
-//         e.title,
-//         e.date,
-//         e.firstParagraph,
-//         e.secondParagraph,
-//         e.thirdParagraph
-//     );
-// });
-// artdata.forEach(e => {
-//     articleContainer.appendChild(e);
-// });
