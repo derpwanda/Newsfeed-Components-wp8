@@ -34,23 +34,39 @@ let menuItems = [
   
 */
 
-function newMenu(data) {
-    const menuContainer = document.createElement("div");
-    const list = document.createElement("ul");
-    menuContainer.classList.add("menu");
-    menuContainer.appendChild(list);
-    const listitems = data.map(e => {
-        const listitem = document.createElement("li");
-        listitem.textContent = e;
-        return listitem;
-    });
-    listitems.forEach(e => {
-        list.appendChild(e);
-    });
-    document.querySelector(".menu-button").addEventListener("click", () => {
-        menuContainer.classList.toggle("menu--open");
-    });
-    return menuContainer;
+//create a function and that passes array as argument
+const createMenu = menuData => {
+  //create elements using the html class
+  const div = document.createElement('div')
+  div.classList.add('menu')
+
+  const ul = document.createElement("ul")
+  div.appendChild(ul)
+
+  // iterate over the aray creating li for each
+  const menuItems = menuData.map(item => {
+    const listitem = document.createElement('li')
+    listitem.textContent = item
+    return listitem
+  })
+
+  console.log(menuItems)
+
+  // add items to ul
+  menuItems.forEach( listitem => {
+    ul.appendChild(listitem)
+  })
+
+  //select menu button using dom-selector
+  //add click handler
+  document.querySelector('.menu-button').addEventListener('click', () => {
+    div.classList.toggle('menu--open')
+  })
+
+  //return menu component
+  return div
+
 }
-const header = document.querySelector(".header");
-header.appendChild(newMenu(menuItems));
+
+//add menu component to the DOM
+document.querySelector(".header").appendChild(createMenu(menuItems));
