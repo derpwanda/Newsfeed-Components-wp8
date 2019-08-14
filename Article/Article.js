@@ -122,9 +122,12 @@ function articles(title, date, first, second, third) {
     const artthird = document.createElement("p");
     const expandbtn = document.createElement("span");
 
+    //classes
     articleDiv.classList.add("article");
     artdate.classList.add("date");
     expandbtn.classList.add("expandButton");
+
+    //structure of elements
     header.textContent = title;
     artdate.textContent = date;
     artfirst.textContent = first;
