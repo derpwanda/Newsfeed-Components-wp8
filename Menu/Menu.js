@@ -59,10 +59,19 @@ const createMenu = menuData => {
     });
 
     //select menu button using dom-selector
-    //add click handler
+    // add click handler
     document.querySelector(".menu-button").addEventListener("click", () => {
         div.classList.toggle("menu--open");
     });
+
+    // let menuButton = document.querySelector(".menu-button");
+    // menuButton.addEventListener("click", () => {
+    //     if (menuDiv.classList.contains("menu--open")) {
+    //         menuDiv.classList.remove("menu--open");
+    //     } else {
+    //         menuDiv.classList.add("menu--open");
+    //     }
+    // });
 
     //return menu component
     return div;
